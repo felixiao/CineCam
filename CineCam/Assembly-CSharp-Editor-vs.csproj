@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CineCam\Editor\CineCamEditor.cs" />
      <Compile Include="Assets\Editor\GridEditor.cs" />
      <Compile Include="Assets\Editor\GridWindow.cs" />
  <Reference Include="Assembly-UnityScript">

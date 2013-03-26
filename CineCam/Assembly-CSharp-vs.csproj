@@ -45,6 +45,11 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Character Controllers\Sources\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\CineCam\CineCamAnalyser.cs" />
+     <Compile Include="Assets\CineCam\CineCamIdiom.cs" />
+     <Compile Include="Assets\CineCam\CineCamManager.cs" />
+     <Compile Include="Assets\CineCam\CineCamRule.cs" />
+     <Compile Include="Assets\CineCam\CineCamShot.cs" />
      <Compile Include="Assets\Scripts\CameraControl.cs" />
      <Compile Include="Assets\Scripts\Grid.cs" />
      <Compile Include="Assets\Scripts\ThirdPersonCamera.cs" />

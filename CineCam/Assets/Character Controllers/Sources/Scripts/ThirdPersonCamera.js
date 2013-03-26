@@ -199,8 +199,13 @@ function SetUpRotation (centerPos : Vector3, headPos : Vector3)
 	var yRotation = Quaternion.LookRotation(Vector3(offsetToCenter.x, 0, offsetToCenter.z));
 
 	var relativeOffset = Vector3.forward * distance + Vector3.down * height;
-	cameraTransform.rotation = yRotation * Quaternion.LookRotation(relativeOffset);
+	//cameraTransform.rotation = yRotation * Quaternion.LookRotation(relativeOffset);
 
+	// test if there was something between camera and player
+	if(Check()){
+		cameraTransform.rotation = yRotation * Quaternion.LookRotation(relativeOffset);
+	}
+	
 	// Calculate the projected center position and top position in world space
 	var centerRay = cameraTransform.camera.ViewportPointToRay(Vector3(.5, 0.5, 1));
 	var topRay = cameraTransform.camera.ViewportPointToRay(Vector3(.5, clampHeadPositionScreenSpace, 1));
@@ -223,7 +228,52 @@ function SetUpRotation (centerPos : Vector3, headPos : Vector3)
 		cameraTransform.rotation *= Quaternion.Euler(-extraLookAngle, 0, 0);
 	}
 }
-
+function Check():boolean{
+	var distanceToTarget=Vector3.Distance(cameraTransform.position,transform.position);
+	var centerRay = cameraTransform.camera.ViewportPointToRay(Vector3(.5, 0.5, 1));
+	var topRay = cameraTransform.camera.ViewportPointToRay(Vector3(.5, 1, 1));
+	var bottomRay = cameraTransform.camera.ViewportPointToRay(Vector3(.5, 0, 1));
+	var leftRay = cameraTransform.camera.ViewportPointToRay(Vector3(0, 0.5, 1));
+	var rightRay = cameraTransform.camera.ViewportPointToRay(Vector3(1, 0.5, 1));
+	var hit : RaycastHit;
+	
+	if (Physics.Raycast (centerRay, hit, distanceToTarget)) {
+    	if(hit.transform!=transform){
+    		Debug.DrawLine(centerRay.origin,hit.point,Color.red);
+    		print("something in between center!");
+    		return false;
+    	}
+	}
+//	if (Physics.Raycast (topRay, hit, distanceToTarget)) {
+//    	if(hit.transform!=transform){
+//    		Debug.DrawLine(topRay.origin,hit.point,Color.red);
+//    		print("something in between top!");
+//    		return false;
+//    	}
+//	}
+//	if (Physics.Raycast (bottomRay, hit, distanceToTarget)) {
+//    	if(hit.transform!=transform){
+//    		Debug.DrawLine(bottomRay.origin,hit.point,Color.red);
+//    		print("something in between bottom!");
+//    		return false;
+//    	}
+//	}
+//	if (Physics.Raycast (leftRay, hit, distanceToTarget)) {
+//    	if(hit.transform!=transform){
+//    		Debug.DrawLine(leftRay.origin,hit.point,Color.red);
+//    		print("something in between left!");
+//    		return false;
+//    	}
+//	}
+//	if (Physics.Raycast (rightRay, hit, distanceToTarget)) {
+//    	if(hit.transform!=transform){
+//    		Debug.DrawLine(rightRay.origin,hit.point,Color.red);
+//    		print("something in between right!");
+//    		return false;
+//    	}
+//	}
+	return true;
+}
 function GetCenterOffset ()
 {
 	return centerOffset;

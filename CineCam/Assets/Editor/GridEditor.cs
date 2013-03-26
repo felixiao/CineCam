@@ -73,7 +73,7 @@ public class GridEditor : Editor
 			Directory.CreateDirectory(Environment.CurrentDirectory+"//Save");
 		File.Create(PATH);
 	}
-	[MenuItem("CineCam/Get Path")]
+	[MenuItem("CineCam/Save/Get Path")]
 	static void ReadPath(){
 		if(!File.Exists(PATH))
 			return;
@@ -91,7 +91,7 @@ public class GridEditor : Editor
 			sr.Close();
 		}
 	}
-	[MenuItem("CineCam/Save Path")]
+	[MenuItem("CineCam/Save/Save Path")]
 	static void SavePath(){
 		if(!File.Exists(PATH))
 			CreatePath();

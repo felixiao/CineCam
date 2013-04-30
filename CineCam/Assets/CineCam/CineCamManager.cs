@@ -1,7 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+/* 
+ * 
+ * 
+ * 
+ * 
+ */ 
 public class CineCamManager : MonoBehaviour {
 	CineCamIdiom cineIdiom;
 	public List<string> dialog;

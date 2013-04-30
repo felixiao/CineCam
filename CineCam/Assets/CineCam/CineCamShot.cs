@@ -1,14 +1,21 @@
 using UnityEngine;
 using System.Collections;
 using System;
-
+/// <summary>
+/// CineCam shot.
+/// 
+/// </summary>
 public class CineCamShot{
-public GameObject Subject;//i.e. player
+	public enum PType{
+		CloseUp,Medium,Full,Wide
+	}
+	public GameObject Subject;//i.e. player
 	public GameObject Target;//i.e. enemy
 	public CCamMovement ccMove;//movement
 	public CCamPlacement ccPlace;//position
 	public bool isCurrent;// is this the current cam
 	public Camera cam;//the camera itself
+	
 	//constructer
 	public CineCamShot(){
 		this.Subject=new GameObject();
@@ -17,13 +24,27 @@ public GameObject Subject;//i.e. player
 		this.ccMove=new CCamMovement();
 		this.ccPlace=new CCamPlacement(CCamPlacement.Preset.OverShoudler);
 	}
+	/// <summary>
+	/// Initializes a new instance of the <see cref="CineCamShot"/> class.
+	/// </summary>
+	/// <param name='move'>
+	/// Move.
+	/// </param>
+	/// <param name='place'>
+	/// Place.
+	/// </param>
+	/// <param name='sub'>
+	/// Subject of the camera. Indicates where the camera is attaching to.
+	/// </param>
+	/// <param name='tar'>
+	/// Target of the camera. Indicates where the camera is looking at.
+	/// </param>
 	public CineCamShot(CCamMovement move,CCamPlacement place,GameObject sub,GameObject tar){
 		this.cam=new Camera();
 		this.Subject=sub;
 		this.Target=tar;
 		this.ccMove=move;
 		this.ccPlace=place;
-		
 	}
 	public void Init(){
 		Debug.Log("sub: "+Subject.name+", tar: "+Target.name);
@@ -46,6 +67,12 @@ public GameObject Subject;//i.e. player
 		Init();
 		isCurrent=true;
 		return cam;
+	}
+	public void OnStart(){
+	}
+	public void OnPlay(){
+	}
+	public void OnStop(){
 	}
 }
 
